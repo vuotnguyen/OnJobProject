@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="@dimen/dm_8"
+    android:background="#FFFFFF"
+    android:layout_marginTop="@dimen/dm_8"
+    android:layout_marginBottom="@dimen/dm_8"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/common_google_signin_btn_icon_dark"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:padding="@dimen/dm_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:textSize="@dimen/dm_16"/>
+
+        <ImageView
+            android:padding="@dimen/dm_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_play_arrow_24"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:padding="@dimen/dm_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:textSize="@dimen/dm_16"/>
+
+    </TableRow>
+
+    <TextView
+        android:id="@+id/tv_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sfsdfsdfsdfsdfsdfdfsfsdfsdfsfsdfsdfsdbgfbfgfgbf"
+        android:textSize="@dimen/dm_16"
+        android:layout_marginTop="@dimen/dm_8"
+        android:layout_marginBottom="@dimen/dm_8"/>
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:layout_width="match_parent"
+        app:use_controller="true"
+
+        android:layout_height="200dp"
+        android:id="@+id/exo_player"/>
+
+
+    <TableRow
+        android:layout_marginTop="@dimen/dm_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_like"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 lượt thích" />
+        <TextView
+            android:id="@+id/tv_comment"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 bình luận"/>
+        <TextView
+            android:id="@+id/tv_share"
+            android:textAlignment="viewEnd"
+            android:layout_weight="1"
+            android:paddingRight="@dimen/dm_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 chia sẻ"/>
+    </TableRow>
+    <View
+        android:layout_marginTop="@dimen/dm_8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D3D3D3"/>
+    <TableRow
+        android:layout_marginTop="@dimen/dm_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_like"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/level_listlike" />
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_comment"
+            android:src="@drawable/ic_outline_mode_comment_24"/>
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ic_baseline_share_24"/>
+    </TableRow>
+
+
+</LinearLayout>

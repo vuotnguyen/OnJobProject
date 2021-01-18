@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/design_bottom_sheet"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:behavior_fitToContents = "false"
+    app:behavior_skipCollapsed = "true"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_comment"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TableRow
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/dm_8"
+        android:layout_width="match_parent"
+        android:background="@drawable/edt_radius"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:layout_weight="1"
+            android:paddingRight="@dimen/dm_16"
+            android:paddingLeft="@dimen/dm_16"
+            android:id="@+id/edt_comment"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="16dp"
+            android:background="@drawable/edt_radius"
+            android:hint="Your Comment" />
+
+        <ImageView
+            android:layout_margin="@dimen/dm_8"
+            android:id="@+id/img_send"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_baseline_send_24" />
+
+    </TableRow>
+
+
+</LinearLayout>

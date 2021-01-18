@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="50dp"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/baseline_facebook_white_48" />
+
+    <EditText
+        android:inputType="textEmailAddress"
+        android:id="@+id/edt_email"
+        android:singleLine="true"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColorHint="#80FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email hoặc số điện thoại"
+        android:textColor="#FFFFFF"/>
+    <EditText
+        android:id="@+id/edt_pass"
+        android:singleLine="true"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColorHint="#80FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mật khẩu"
+        android:textColor="#FFFFFF"/>
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu đăng nhập" />
+
+    <Button
+        android:id="@+id/bt_signin"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đăng nhập"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:layout_gravity="right"
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quên mật khẩu ?"
+        android:textColor="#FFFFFF"/>
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng ký facebook"
+        android:textColor="#FFFFFF"/>
+    <TextView
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn cần trợ giúp ?"
+        android:textColor="#FFFFFF"/>
+
+
+
+</LinearLayout>

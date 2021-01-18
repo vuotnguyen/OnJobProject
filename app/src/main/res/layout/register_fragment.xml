@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:padding="48dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/baseline_facebook_white_48"/>
+    <EditText
+        android:id="@+id/edt_name"
+        android:singleLine="true"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColorHint="#80FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên đăng nhập"
+        android:textColor="#FFFFFF"/>
+    <EditText
+        android:id="@+id/edt_email"
+        android:inputType="textEmailAddress"
+        android:singleLine="true"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColorHint="#80FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:textColor="#FFFFFF"/>
+    <EditText
+        android:id="@+id/edt_pass"
+        android:singleLine="true"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColorHint="#80FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mật khẩu"
+        android:textColor="#FFFFFF"/>
+    <EditText
+        android:id="@+id/edt_repass"
+        android:singleLine="true"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColorHint="#80FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập lại mật khẩu"
+        android:textColor="#FFFFFF"/>
+    <Button
+
+        android:id="@+id/bt_signup"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimaryDark"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đăng kí"
+        android:textColor="#FFFFFF"/>
+
+</LinearLayout>
