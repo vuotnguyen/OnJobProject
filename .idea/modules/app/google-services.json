@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "153762765328",
+    "firebase_url": "https://elevated-agent-285512-default-rtdb.firebaseio.com",
     "project_id": "elevated-agent-285512",
     "storage_bucket": "elevated-agent-285512.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:153762765328:android:af44a96844712140b70895",
+        "mobilesdk_app_id": "1:153762765328:android:61fb7f913f4a4540b70895",
         "android_client_info": {
           "package_name": "com.example.onjobproject"
         }

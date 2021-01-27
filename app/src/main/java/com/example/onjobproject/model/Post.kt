@@ -11,9 +11,9 @@ class Post  (){
     lateinit var detail: String
     lateinit var url: String
     var type: Int = 0
-    private lateinit var date: String
+    lateinit var date: String
     var likes: ArrayList<String>? = null
-    lateinit var comments: ArrayList<Comment>
+    var comments: ArrayList<Comment>? = null
      var share: Int = 0
     @Inject
     constructor( user: User, title: String,  detail: String, url: String,type:Int, date: String, likes: ArrayList<String>, comments: ArrayList<Comment>, share: Int) : this() {

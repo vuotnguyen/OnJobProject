@@ -1,11 +1,9 @@
 package com.example.onjobproject.view.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.onjobproject.R
@@ -14,6 +12,7 @@ import com.example.onjobproject.model.Comment
 import com.example.onjobproject.model.Post
 import com.example.onjobproject.view.fragment.ListPostFragment
 import com.google.android.exoplayer2.SimpleExoPlayer
+import kotlinx.android.synthetic.main.comment_adapter.view.*
 import kotlinx.android.synthetic.main.viewtype1_adapter.view.*
 import kotlinx.android.synthetic.main.viewtype1_adapter.view.img_avatar
 import kotlinx.android.synthetic.main.viewtype1_adapter.view.img_comment
@@ -38,7 +37,7 @@ class PostAdapter(
 
     private var likes: ArrayList<String>? = null
     private var comments: ArrayList<Comment>? = null
-    private lateinit var adapterModel: Post
+    private lateinit var post: Post
     private var typeUpdate: Int? = null
 
 
@@ -68,11 +67,12 @@ class PostAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        adapterModel = list[position]
+        post = list[position]
+        val lastComment = post.comments?.get(post.comments!!.size-1)
         holder.apply {
             when (holder) {
-                is HolderItem1 -> holder.bindData(adapterModel,mail,position,cbListPost)
-                is HolderItem2 -> holder.bindData(adapterModel,mail,position,cbListPost,videoPlayer)
+                is HolderItem1 -> holder.bindData(post,mail,position,cbListPost,lastComment)
+                is HolderItem2 -> holder.bindData(post,mail,position,cbListPost,videoPlayer,lastComment)
             }
         }
     }
@@ -86,8 +86,13 @@ class PostAdapter(
                     holder.itemView.tv_like.text = "0 lượt thích"
                 } else holder.itemView.tv_like.text = "${list.get(position).likes!!.size} lượt thích"
             }
-            if(typeUpdate == ListPostFragment.TYPE_COMMENT){
-                holder.itemView.tv_comment.text = "${comments?.size} comment"
+
+            if(typeUpdate == ListPostFragment.TYPE_COMMENTLAST){
+                holder.itemView.tv_comment.text =  payloads[0].toString() +  " comment"
+                val lastComment : Comment = payloads[1] as Comment
+                Glide.with(holder.itemView.context).load(lastComment.user.avatar).into(holder.itemView.img_avatarCMU)
+                holder.itemView.tv_commentUser.text = lastComment.content
+                holder.itemView.tv_user.text = lastComment.user.name
             }
         }
     }
@@ -98,32 +103,32 @@ class PostAdapter(
         typeClick: Int
     ){
         this.likes = ArrayList()
-        adapterModel = list[pos]
-        adapterModel.likes = likes
+        post = list[pos]
+        post.likes = likes
         typeUpdate = typeClick
        notifyItemChanged(pos,likes)
         if (likes != null) {
-            this.likes = likes
+            list[pos].likes = likes
         } else this.likes = null
     }
     fun updateComment(
         pos: Int,
-        comments: ArrayList<Comment>,
+        comments: Int,
         typeComment: Int
     ){
-        this.comments = ArrayList()
-        adapterModel = list[pos]
-        adapterModel.comments = comments
+        post = list[pos]
         typeUpdate = typeComment
-        notifyItemChanged(pos,comments.toMutableList())
-        this.comments = comments
+        notifyItemChanged(pos,comments)
 
+    }
+    fun updateLastComment(pos: Int, commentUser: Comment, typeCommentlast: Int) {
+        typeUpdate = typeCommentlast
+        notifyItemChanged(pos,commentUser)
     }
     fun filterList(listSearch: ArrayList<Post>) {
         list = listSearch
         notifyDataSetChanged()
     }
-
 }
 
 class HolderItem1(view: View) : RecyclerView.ViewHolder(view) {
@@ -131,15 +136,20 @@ class HolderItem1(view: View) : RecyclerView.ViewHolder(view) {
         post: Post,
         mail: String,
         position: Int,
-        cbListPost: CBListPost
+        cbListPost: CBListPost,
+        lastComment: Comment?
     ) {
         Glide.with(itemView.context).load(post.user.avatar).into(itemView.img_avatar)
         itemView.tv_name.text = post.user.name
         itemView.tv_title.text = post.title
         itemView.tv_detail.text = post.detail
+
         if(post.likes == null)itemView.tv_like.text = "0 lượt thích"
         else itemView.tv_like.text = "${post.likes!!.size} lượt thích"
-        itemView.tv_comment.text = "${post.comments.size} bình luận"
+
+        if(post.comments == null)itemView.tv_comment.text = "0 bình luận"
+        else itemView.tv_comment.text = "${post.comments!!.size} bình luận"
+
         itemView.tv_share.text = "${post.share} chia sẻ"
         Glide.with(itemView.context).load(post.url).into(itemView.img_image)
 
@@ -155,8 +165,19 @@ class HolderItem1(view: View) : RecyclerView.ViewHolder(view) {
         }
 
         itemView.img_comment.setOnClickListener {
-            cbListPost.clickComment(post.comments,position)
+            cbListPost.clickComment(position)
         }
+
+        if (lastComment == null){
+            itemView.item_comment.visibility = View.GONE
+        }else{
+            Glide.with(itemView.context).load(lastComment.user.avatar).into(itemView.img_avatarCMU)
+            itemView.tv_commentUser.text = lastComment.content
+            itemView.tv_user.text = lastComment.user.name
+        }
+
+
+
     }
 
     private fun checkLike(mail: String, likes: ArrayList<String>?): Int {
@@ -177,15 +198,20 @@ class HolderItem2(view: View) : RecyclerView.ViewHolder(view) {
         mail: String,
         position: Int,
         cbListPost: CBListPost,
-        videoPlayer: SimpleExoPlayer
+        videoPlayer: SimpleExoPlayer,
+        lastComment: Comment?
     ) {
         Glide.with(itemView.context).load(post.user.avatar).into(itemView.img_avatar)
         itemView.tv_name.text = post.user.name
         itemView.tv_title.text = post.title
         itemView.tv_detail.text = post.detail
+
         if(post.likes == null)itemView.tv_like.text = "0 lượt thích"
         else itemView.tv_like.text = "${post.likes!!.size} lượt thích"
-        itemView.tv_comment.text = "${post.comments.size} bình luận"
+
+        if(post.comments == null)itemView.tv_comment.text = "0 bình luận"
+        else itemView.tv_comment.text = "${post.comments!!.size} bình luận"
+
         itemView.tv_share.text = "${post.share} chia sẻ"
 
         itemView.img_like.setImageLevel(checkLike(mail, post.likes))
@@ -199,10 +225,19 @@ class HolderItem2(view: View) : RecyclerView.ViewHolder(view) {
         }
 
         itemView.img_comment.setOnClickListener {
-            cbListPost.clickComment(post.comments,position)
+            cbListPost.clickComment(position)
         }
 
         loadVideo(post,cbListPost,videoPlayer)
+
+        if (lastComment == null){
+            itemView.item_comment.visibility = View.GONE
+        }else{
+            Glide.with(itemView.context).load(lastComment.user.avatar).into(itemView.img_avatarCMU)
+            itemView.tv_commentUser.text = lastComment.content
+            itemView.tv_user.text = lastComment.user.name
+        }
+
     }
 
     private fun checkLike(mail: String, likes: ArrayList<String>?): Int {

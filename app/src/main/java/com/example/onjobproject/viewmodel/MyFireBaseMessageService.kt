@@ -37,7 +37,7 @@ class MyFireBaseMessageService : FirebaseMessagingService() {
         val pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT)
 
         val notificationCompat = NotificationCompat.Builder(applicationContext,"channel_default")
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.drawable.facebook)
             .setContentTitle(title)
             .setAutoCancel(false)
             .setVibrate(longArrayOf(1000,1000,1000,1000,1000))

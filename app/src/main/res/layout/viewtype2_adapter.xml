@@ -54,7 +54,6 @@
     <com.google.android.exoplayer2.ui.PlayerView
         android:layout_width="match_parent"
         app:use_controller="true"
-
         android:layout_height="200dp"
         android:id="@+id/exo_player"/>
 
@@ -115,6 +114,12 @@
 
             android:src="@drawable/ic_baseline_share_24"/>
     </TableRow>
+    <View
+        android:layout_marginTop="@dimen/dm_8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D3D3D3"/>
+    <include layout="@layout/comment_adapter"/>
 
 
 </LinearLayout>
